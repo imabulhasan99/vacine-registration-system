@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Jobs\Transfer;
 use App\Jobs\SendUserNotification;
 use App\Jobs\ProcessVaccinatedUsersJob;
+use App\Jobs\ResetVaccineCenterLimitJob;
 use App\Jobs\ScheduleUnvaccinatedUsersJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -17,7 +18,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->job(new ScheduleUnvaccinatedUsersJob)->weekdays();
-        $schedule->job(new ProcessVaccinatedUsersJob)->daily();
+        $schedule->job(new ProcessVaccinatedUsersJob)->weekdays();
+        $schedule->job(new ResetVaccineCenterLimitJob)->dailyAt('24:00')->days([0, 4]);
     }
 
     /**

@@ -17,8 +17,9 @@ class CenterFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->company,
-            'limit' => fake()->numberBetween(10,30),
+            'name'              => fake()->company,
+            'limit'             => fake()->numberBetween(10,50),
+            'original_limit'    => 50,
         ];
     }
 }
