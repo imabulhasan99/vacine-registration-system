@@ -43,7 +43,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function center(){
-        return $this->belongsTo(Center::class);
-    }
+ 
 }

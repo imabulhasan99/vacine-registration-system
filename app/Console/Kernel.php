@@ -17,9 +17,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(new ScheduleUnvaccinatedUsersJob)->weekdays();
+        $schedule->job(new ScheduleUnvaccinatedUsersJob)->everySecond();
         $schedule->job(new ProcessVaccinatedUsersJob)->weekdays();
-        $schedule->job(new ResetVaccineCenterLimitJob)->dailyAt('24:00')->days([0, 4]);
+        $schedule->job(new ResetVaccineCenterLimitJob)->daily();
     }
 
     /**

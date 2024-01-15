@@ -18,4 +18,8 @@ class PublicUser extends Model
         'scheduled_date',
         'center_id'
     ];
+
+    public function center(){
+        return $this->belongsTo(Center::class);
+    }
 }
