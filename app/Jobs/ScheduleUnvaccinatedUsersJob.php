@@ -31,17 +31,14 @@ class ScheduleUnvaccinatedUsersJob implements ShouldQueue
         ->orderBy('created_at')
         ->with('center')
         ->get();
-
     foreach ($users as $user) {
-      
         if ($user->center->limit > 0) {
             $user->update([
                 'status' => 'scheduled',
                 'scheduled_date' => Carbon::now()->addDays(7),
             ]);
-
             $user->center->decrement('limit');
-            //Mail::to($user->email)->send(new VaccinationScheduled($user));
+            Mail::to($user->email)->send(new VaccinationScheduled($user));
         }
     }
 }
