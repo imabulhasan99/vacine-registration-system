@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Models\PublicUser;
 use Carbon\Carbon;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -28,7 +28,7 @@ class ProcessVaccinatedUsersJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $users = User::where('status','scheduled')
+        $users = PublicUser::where('status','scheduled')
                 ->where('scheduled_date','<=', Carbon::now())
                 ->get();
         foreach ($users as $user) 

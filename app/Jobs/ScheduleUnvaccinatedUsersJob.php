@@ -1,9 +1,9 @@
 <?php 
 namespace App\Jobs;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use App\Mail\VaccinationScheduled;
+use App\Models\PublicUser;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
@@ -27,7 +27,7 @@ class ScheduleUnvaccinatedUsersJob implements ShouldQueue
 
     public function handle()
 {
-    $users = User::where('status', 'notvaccinated')
+    $users = PublicUser::where('status', 'notvaccinated')
         ->orderBy('created_at')
         ->with('center')
         ->get();
