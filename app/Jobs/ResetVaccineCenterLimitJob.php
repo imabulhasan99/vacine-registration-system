@@ -27,8 +27,7 @@ class ResetVaccineCenterLimitJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $centers =  Center::all();
-        foreach ($centers as $center) {
+        foreach (Center::all() as $center) {
             $center->update(['limit' => $center->original_limit]);
         }
         

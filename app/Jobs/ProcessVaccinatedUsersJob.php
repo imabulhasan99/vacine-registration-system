@@ -28,9 +28,8 @@ class ProcessVaccinatedUsersJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $currentDate = Carbon::now();
         $users = User::where('status','scheduled')
-                ->where('scheduled_date','<=', $currentDate)
+                ->where('scheduled_date','<=', Carbon::now())
                 ->get();
         foreach ($users as $user) 
         {
