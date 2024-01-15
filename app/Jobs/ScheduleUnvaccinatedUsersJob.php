@@ -14,9 +14,9 @@ use Illuminate\Contracts\Queue\ShouldBeUnique;
 
 use Carbon\Carbon;
 
-class ScheduleUnvaccinatedUsersJob //implements ShouldQueue
+class ScheduleUnvaccinatedUsersJob implements ShouldQueue
 {
-    //use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $tries = 5;
     public $timeout = 120;

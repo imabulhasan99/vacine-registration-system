@@ -15,9 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(new SendUserNotification)->everyMinute();
-        //$schedule->job(new Transfer)->everyMinute();
-        //$schedule->command('inspire')->hourly();
+        $schedule->job(new ScheduleUnvaccinatedUsersJob)->weekdays();;
     }
 
     /**
